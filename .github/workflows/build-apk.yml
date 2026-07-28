@@ -20,9 +20,6 @@ jobs:
           npm install --force
           npm install --platform=linux --arch=x64 esbuild @tailwindcss/oxide-linux-x64-gnu --force
 
-      - name: Build Web App
-        run: npm run build
-
       - name: Setup Java JDK 21
         uses: actions/setup-java@v4
         with:
@@ -32,9 +29,15 @@ jobs:
       - name: Setup Capacitor
         run: |
           npm install @capacitor/core @capacitor/cli @capacitor/android --force
+          npm run build
           npx cap init "Attendance Tracker" "com.rubel.attendance" --web-dir dist
           npx cap add android
           npx cap sync android
+
+      - name: Fix Kotlin Duplicate Classes Error
+        run: |
+          echo "configurations.all { resolutionStrategy { force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22' } }" >> android/app/build.gradle
+          echo "android { configurations.all { exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7' exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8' } }" >> android/app/build.gradle
 
       - name: Build Android APK
         run: |
