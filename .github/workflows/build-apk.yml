@@ -17,15 +17,15 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci --include=optional
-          npm install --platform=linux --arch=x64 esbuild @tailwindcss/oxide-linux-x64-gnu
+          npm install --force
+          npm install --platform=linux --arch=x64 esbuild @tailwindcss/oxide-linux-x64-gnu --force
 
       - name: Build Web App
         run: npm run build
 
       - name: Setup Capacitor
         run: |
-          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npm install @capacitor/core @capacitor/cli @capacitor/android --force
           npx cap init "Attendance Tracker" "com.rubel.attendance" --web-dir dist
           npx cap add android
           npx cap sync android
