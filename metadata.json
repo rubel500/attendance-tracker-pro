@@ -1,6 +1,0 @@
-{
-  "name": "Rubel Chowdhury Attendance Tracker Pro",
-  "description": "রুবেল চৌধুরী প্রিমিয়াম হাজিরা, ওটি ও বেতন ট্র্যাকার অ্যাপ",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
